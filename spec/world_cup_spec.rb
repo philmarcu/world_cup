@@ -32,4 +32,17 @@ RSpec.describe WorldCup do
     expect(world_cup.active_players_by_position("midfielder")).to eq([pogba])
   end
 
+  it 'lists all_players_by_position' do
+    france.add_player(mbappe)
+    france.add_player(pogba)
+    croatia.add_player(modric)
+    croatia.add_player(vida)
+
+    expected = {
+      "forward" => [mbappe],
+      "midfielder" => [pogba, modric],
+      "defender" => [vida]
+    }
+    expect(world_cup.all_players_by_position).to eq(expected)
+  end
 end
